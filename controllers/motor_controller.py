@@ -57,6 +57,7 @@ class MotorController(QObject):
             self.serial = ser
             self._connected = True
             self.move_btn.setEnabled(True)
+            self.move(self.serial, 0)
         else:
             self._connected = False
             self.move_btn.setEnabled(False)

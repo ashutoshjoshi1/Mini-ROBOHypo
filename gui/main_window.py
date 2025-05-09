@@ -33,6 +33,8 @@ class MainWindow(QMainWindow):
         self.latest_data = {}
         self.pixel_counts = []
 
+        self.current_motor_angle = 0
+
         thp_port = self.config.get("thp_sensor", "COM8")
         self.thp_ctrl = THPController(port=thp_port, parent=self)
         self.thp_ctrl.status_signal.connect(self.statusBar().showMessage)
@@ -156,7 +158,7 @@ class MainWindow(QMainWindow):
             motor_current_pct = getattr(self.motor_ctrl, "current_percent", 0)
             motor_alarm = getattr(self.motor_ctrl, "alarm_code", 0)
             motor_temp = getattr(self.motor_ctrl, "temperature", 0)
-            motor_angle = getattr(self.motor_ctrl, "current_angle_deg", 0)
+            motor_angle = getattr(self.current_motor_angle, 0)
 
             filter_pos = self.filter_ctrl.get_position()
             if filter_pos is None:

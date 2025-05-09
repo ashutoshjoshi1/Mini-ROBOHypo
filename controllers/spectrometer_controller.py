@@ -125,7 +125,7 @@ class SpectrometerController(QObject):
         if not self._ready:
             self.status_signal.emit("Spectrometer not ready.")
             return
-        code = prepare_measurement(self.handle, self.npix, integration_time_ms=50.0, averages=1)
+        code = prepare_measurement(self.handle, self.npix, integration_time_ms=500.0, averages=1)
         if code != 0:
             self.status_signal.emit(f"Prepare error: {code}")
             return
